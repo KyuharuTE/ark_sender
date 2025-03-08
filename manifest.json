@@ -13,7 +13,7 @@
         "repo": "KyuharuTE/ark_sender",
         "branch": "master"
     },
-    "dependencies": ["euphony"],
+    "dependencies": ["euphony", "NapCat.Framework"],
     "platform": ["win32", "linux", "darwin"],
     "injects": {
         "renderer": "./src/renderer.js",
