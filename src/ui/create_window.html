@@ -1,52 +1,58 @@
-<style>
-    input::-webkit-outer-spin-button,  
-    input::-webkit-inner-spin-button {  
-        -webkit-appearance: none !important;
-    }
+<link
+	rel="stylesheet"
+	href="local:///opt/LiteLoaderQQNT/plugins/ark_sender/src/lib/styles/main.css"
+/>
+<div id="ark-sender-window" class="ark-window q-dialog">
+	<div id="ark-sender-modal" class="ark-modal q-dialog-modal"></div>
 
-    .fake-message-item:hover {
-        background-color: #F5F5F5;
-    }
+	<div id="ark-sender-dialog" class="ark-dialog q-dialog-main">
+		<hr style="margin: 16px 0px" />
 
-    .fake-message-item.fake-message-dark-mode:hover {
-        background-color: #404040;
-    }
+		<div class="ark-form-group">
+			<input
+				class="ark-input"
+				:style="{ backgroundColor: isDarkMode ? 'var(--bg-dark)' : 'var(--bg-light)', 
+                         color: isDarkMode ? 'var(--text-dark)' : 'var(--text-light)' }"
+				type="text"
+				spellcheck="false"
+				placeholder="请输入 Bot Http 端口"
+				v-model="inputPort"
+			/>
+		</div>
 
-    .fake-message-input:focus {
-        border-radius: 4px;
-        border: 1px solid #0099FF;
-    }
+		<div class="ark-form-group">
+			<select
+				class="ark-input"
+				:style="{ backgroundColor: isDarkMode ? 'var(--bg-dark)' : 'var(--bg-light)', 
+                         color: isDarkMode ? 'var(--text-dark)' : 'var(--text-light)' }"
+				v-model="inputType"
+			>
+				<option value="json">JSON消息</option>
+				<option value="text">文本消息</option>
+			</select>
+		</div>
 
-    .fake-message-list-move,
-    .fake-message-list-enter-active,
-    .fake-message-list-leave-active {
-        transition: all 500ms ease;
-    }
+		<div class="ark-form-group">
+			<div
+				v-html="messageIcon"
+				:style="{ fill: isDarkMode ? 'var(--icon-dark)' : 'var(--icon-light)' }"
+			></div>
+			<input
+				class="ark-input"
+				:style="{ backgroundColor: isDarkMode ? 'var(--bg-dark)' : 'var(--bg-light)', 
+                         color: isDarkMode ? 'var(--text-dark)' : 'var(--text-light)' }"
+				type="text"
+				spellcheck="false"
+				:placeholder="getPlaceholder"
+				v-model="inputContent"
+			/>
+		</div>
 
-    .fake-message-list-enter-from,
-    .fake-message-list-leave-to {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-
-    .fake-message-list-leave-active {
-        position: absolute;
-    }
-</style>
-
-<div id="fake-message-window" class="q-dialog" style="visibility: hidden; position: fixed; z-index: 4999; transition: all 300ms;">
-	<div id="fake-message-modal" class="q-dialog-modal" style="opacity: 0; position: inherit; background: var(--overlay_mask_dark); transition: all 150ms ease-in;" ></div>
-	<div id="fake-message-dialog" class="q-dialog-main" style="transform: translate(0px, -20px); opacity: 0; margin: auto 10px; transition: all 150ms ease-in; padding: 16px;">
-        <hr style="margin: 16px 0px;">
-        <div style="display: flex; align-items: center; margin-top: 16px;">
-            <input class="fake-message-input" :style="{ marginLeft: '10px', paddingLeft: '10px', width: '100%', height: '30px', borderRadius: '4px', backgroundColor: isDarkMode ? '#282828' : '#F5F5F5', color: isDarkMode ? '#FFFFFF' : '#000000' }" type="text" spellcheck="false" placeholder="请输入 Bot Http 端口" v-model="inputPort">
-        </div>
-        <div style="display: flex; align-items: center; margin-top: 16px;">
-            <svg style="width: 22px; height: 22px;" viewBox="0 0 24 24" :fill="isDarkMode ? '#C1BFC0' : '#000000'">
-                <path d="M17 2H7C4.24 2 2 4.23 2 6.98V12.96V13.96C2 16.71 4.24 18.94 7 18.94H8.5C8.77 18.94 9.13 19.12 9.3 19.34L10.8 21.33C11.46 22.21 12.54 22.21 13.2 21.33L14.7 19.34C14.89 19.09 15.19 18.94 15.5 18.94H17C19.76 18.94 22 16.71 22 13.96V6.98C22 4.23 19.76 2 17 2ZM8 12C7.44 12 7 11.55 7 11C7 10.45 7.45 10 8 10C8.55 10 9 10.45 9 11C9 11.55 8.56 12 8 12ZM12 12C11.44 12 11 11.55 11 11C11 10.45 11.45 10 12 10C12.55 10 13 10.45 13 11C13 11.55 12.56 12 12 12ZM16 12C15.44 12 15 11.55 15 11C15 10.45 15.45 10 16 10C16.55 10 17 10.45 17 11C17 11.55 16.56 12 16 12Z" />
-            </svg>
-            <input class="fake-message-input" :style="{ marginLeft: '10px', paddingLeft: '10px', width: '100%', height: '30px', borderRadius: '4px', backgroundColor: isDarkMode ? '#282828' : '#F5F5F5', color: isDarkMode ? '#FFFFFF' : '#000000' }" type="text" spellcheck="false" placeholder="信息内容" v-model="inputContent">
-        </div>
-        <button class="q-button q-button--small q-button--secondary" style="margin-top: 16px; width: 100%;" @click="sendMessage">发送</button>
+		<button
+			class="ark-button q-button q-button--small q-button--secondary"
+			@click="sendMessage"
+		>
+			发送
+		</button>
 	</div>
 </div>

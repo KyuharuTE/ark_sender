@@ -1,0 +1,94 @@
+/* 基础样式重置 */
+input::-webkit-outer-spin-button,  
+input::-webkit-inner-spin-button {  
+    -webkit-appearance: none !important;
+}
+
+/* 输入框和选择框基础样式 */
+.ark-input {
+    margin-left: 10px;
+    padding-left: 10px;
+    width: 100%;
+    height: 30px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.ark-input:focus {
+    border: 1px solid #0099FF;
+}
+
+/* 列表项样式 */
+.ark-item:hover {
+    background-color: var(--hover-light);
+}
+
+.ark-item.ark-dark:hover {
+    background-color: var(--hover-dark);
+}
+
+/* 窗口样式 */
+.ark-window {
+    visibility: hidden;
+    position: fixed;
+    z-index: 4999;
+    transition: all 300ms;
+}
+
+.ark-modal {
+    opacity: 0;
+    position: inherit;
+    background: var(--overlay_mask_dark);
+    transition: all 150ms ease-in;
+}
+
+.ark-dialog {
+    transform: translate(0px, -20px);
+    opacity: 0;
+    margin: auto 10px;
+    transition: all 150ms ease-in;
+    padding: 16px;
+}
+
+/* 表单组件样式 */
+.ark-form-group {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.ark-button {
+    margin-top: 16px;
+    width: 100%;
+}
+
+/* 动画效果 */
+.ark-list-move,
+.ark-list-enter-active,
+.ark-list-leave-active {
+    transition: all 500ms ease;
+}
+
+.ark-list-enter-from,
+.ark-list-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.ark-list-leave-active {
+    position: absolute;
+}
+
+/* 主题变量 */
+:root {
+    --hover-light: #F5F5F5;
+    --hover-dark: #404040;
+    --bg-light: #F5F5F5;
+    --bg-dark: #282828;
+    --text-light: #000000;
+    --text-dark: #FFFFFF;
+    --icon-light: #000000;
+    --icon-dark: #C1BFC0;
+}
