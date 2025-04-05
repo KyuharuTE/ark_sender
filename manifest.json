@@ -4,7 +4,7 @@
     "name": "ARK Sender",
     "slug": "ark_sender",
     "description": "一个用于发送 ARK 的插件",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "authors": [{
         "name": "Res91",
         "link": "https://github.com/KyuharuTE"
